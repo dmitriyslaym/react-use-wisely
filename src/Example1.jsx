@@ -10,13 +10,13 @@ import Typography from '@mui/material/Typography';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
 
-let indexForName = 0;
+let indexForName = 1;
 const generateName = () => `Item-${indexForName++}`;
+const item1 = { name: generateName() };
+const item2 = { name: generateName() };
 
 export const Example1 = () => {
-  const [items, setItems] = useState(() => [
-    { name: generateName() }
-  ]);
+  const [items, setItems] = useState([item1, item2]);
 
   return (
     <Box>
@@ -24,16 +24,17 @@ export const Example1 = () => {
       <List>
         {items.map((item, index) => (
           <ListItem
-            key={index}
             secondaryAction={
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon
-                  onClick={() => {
-                    setItems(
-                      prevItems => prevItems.filter((_, itemIndex) => index !== itemIndex)
-                    )
-                  }}
-                />
+              <IconButton
+                onClick={() => {
+                  setItems(
+                    prevItems => prevItems.filter((_, itemIndex) => index !== itemIndex)
+                  )
+                }}
+                edge="end"
+                aria-label="delete"
+              >
+                <DeleteIcon />
               </IconButton>
             }
           >

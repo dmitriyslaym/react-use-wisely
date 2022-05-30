@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-// import "antd/dist/antd.css";
 import { Button, Card } from "@mui/material";
 import debounce from 'lodash/debounce';
 import Typography from "@mui/material/Typography";
@@ -8,6 +7,7 @@ import Typography from "@mui/material/Typography";
 const Portal = ({ children }) => {
   const mount = document.getElementById("portal-root");
   const el = document.createElement("div");
+  el.id = 'tooltip-in-portal';
 
   useEffect(() => {
     mount.appendChild(el);
@@ -37,14 +37,12 @@ const TooltipPopover = ({ children, coords, updateTooltipCoords }) => {
         background: '#282c34',
         ...coords
       }}
-      className="ant-popover ant-popover-placement-top"
     >
-      <div className="ant-popover-content">
-        <div className="ant-popover-arrow" />
-        <div className="ant-popover-inner" role="tooltip">
+      <div>
+        <div role="tooltip">
           <div>
-            <Typography variant="p" className="ant-popover-title">Title</Typography>
-            <div className="ant-popover-inner-content">{children}</div>
+            <Typography variant="p">Title</Typography>
+            <div>{children}</div>
           </div>
         </div>
       </div>

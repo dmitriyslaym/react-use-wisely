@@ -3,10 +3,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
+// Need to count from scratch each time when the color is changed
 const ExternalComponent = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    console.log('ExternalComponent is mounted');
     const id = setInterval(() => {
       setCount(prevCount => prevCount + 1);
     }, 1000);

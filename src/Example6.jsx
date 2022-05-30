@@ -55,7 +55,6 @@ function ErrorFallback({ error }) {
   );
 }
 
-
 const foodResource = new AsyncResource(
   fetch("https://random-data-api.com/api/food/random_food")
     .then(async (data) => {
@@ -77,21 +76,6 @@ function RandomFood() {
       <h2>{data.dish}</h2>
       <p>{data.description}</p>
     </fieldset>
-  );
-}
-
-export default function RandomFoodWithSuspense() {
-  return (
-    <>
-      <h1>
-        Random food with <code>&lt;Suspense /&gt;</code>
-      </h1>
-      <Suspense fallback={<div className="spinner" />}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <RandomFood />
-        </ErrorBoundary>
-      </Suspense>
-    </>
   );
 }
 

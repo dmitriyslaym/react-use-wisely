@@ -5,17 +5,19 @@ import Button from '@mui/material/Button';
 export const Example3 = () => {
   const [count, setCount] = useState(0);
 
+  // Multiply the current value each 10 seconds
   useEffect(() => {
     console.log('useEffect set new interval');
 
     const id = setInterval(() => {
-      setCount(count => count * 2);
+      console.log('Triggering multiplication');
+      setCount(count * 2);
     }, 10000);
 
     return () => {
       clearInterval(id);
     }
-  }, [count]);
+  }, []);
 
   return (
     <div>
@@ -29,7 +31,7 @@ export const Example3 = () => {
           setCount(count + 1);
         }, 1000)}
       >
-        Increase
+        Increase with delay
       </Button>
     </div>
   )

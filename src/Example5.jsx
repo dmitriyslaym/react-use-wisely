@@ -52,15 +52,17 @@ export const Example5 = () => {
           variant="contained"
           color="primary"
           onClick={() => {
-            setArtist('');
-            setGenre('');
+            setTimeout(() => {
+              setArtist('');
+              setGenre('');
 
-            // flushSync(() => {
-            //   setArtist('');
-            // })
-            // flushSync(() => {
-            //   setGenre('');
-            // })
+              // flushSync(() => {
+              //   setArtist('');
+              // })
+              // flushSync(() => {
+              //   setGenre('');
+              // })
+            }, 500)
           }}
         >
           Reset filters
