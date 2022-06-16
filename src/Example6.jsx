@@ -62,8 +62,8 @@ const foodResource = new AsyncResource(
       return data;
     })
     .then((data) => {
-      // throw new Error('Try next time!');
-      return data.json();
+      throw new Error('Try next time!');
+      // return data.json();
     })
 );
 

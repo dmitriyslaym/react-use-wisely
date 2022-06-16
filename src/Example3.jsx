@@ -11,7 +11,7 @@ export const Example3 = () => {
 
     const id = setInterval(() => {
       console.log('Triggering multiplication');
-      setCount(count * 2);
+      setCount(prevCount => prevCount * 2);
     }, 10000);
 
     return () => {
@@ -28,7 +28,7 @@ export const Example3 = () => {
         variant="contained"
         color="primary"
         onClick={() => setTimeout(() => {
-          setCount(count + 1);
+          setCount(prevCount => prevCount + 1);
         }, 1000)}
       >
         Increase with delay

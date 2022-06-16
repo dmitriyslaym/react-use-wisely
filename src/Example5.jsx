@@ -53,15 +53,15 @@ export const Example5 = () => {
           color="primary"
           onClick={() => {
             setTimeout(() => {
-              setArtist('');
-              setGenre('');
+              // setArtist('');
+              // setGenre('');
 
-              // flushSync(() => {
-              //   setArtist('');
-              // })
-              // flushSync(() => {
-              //   setGenre('');
-              // })
+              flushSync(() => {
+                setArtist('');
+              })
+              flushSync(() => {
+                setGenre('');
+              })
             }, 500)
           }}
         >

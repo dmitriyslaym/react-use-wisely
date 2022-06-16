@@ -16,11 +16,11 @@ import LinearProgress from '@mui/material/LinearProgress';
 const useArtistInfo = (options) => {
   const [data, setData] = useState();
 
-  // const onSuccess = useRef(options.onSuccess);
-  //
-  // useLayoutEffect(() => {
-  //   onSuccess.current = options.onSuccess;
-  // }, [options.onSuccess]);
+  const onSuccess = useRef(options.onSuccess);
+
+  useLayoutEffect(() => {
+    onSuccess.current = options.onSuccess;
+  }, [options.onSuccess]);
 
   useEffect(() => {
     console.log('useArtistInfo useEffect', { options });
@@ -39,11 +39,11 @@ const useArtistInfo = (options) => {
 
     axios.request(formattedOptions).then((response) => {
       setData(response.data);
-      // options.onSuccess({ artist: options.artist });
+      onSuccess.current({ artist: options.artist });
     }).catch((error) => {
       console.error(error);
     });
-  }, [options]);
+  }, [options.artist]);
 
   return { data };
 };
@@ -52,16 +52,16 @@ export const Example4 = () => {
   const [artist, setArtist] = useState('J. Cole');
   const [successAction, setSuccessAction] = useState('changeTitle');
 
-  // const onSuccess = ({ artist }) => {
-  //   if (successAction === 'changeTitle') {
-  //     document.title = `${artist} music`;
-  //   } else {
-  //     document.title = `Music Info`;
-  //     alert(`Loaded ${artist} music`);
-  //   }
-  // };
+  const onSuccess = useCallback(({ artist }) => {
+    if (successAction === 'changeTitle') {
+      document.title = `${artist} music`;
+    } else {
+      document.title = `Music Info`;
+      alert(`Loaded ${artist} music`);
+    }
+  }, [successAction]);
 
-  const { data } = useArtistInfo({ artist });
+  const { data } = useArtistInfo({ artist, onSuccess });
 
   return (
     <Box>

@@ -24,6 +24,7 @@ export const Example1 = () => {
       <List>
         {items.map((item, index) => (
           <ListItem
+            key={item.name}
             secondaryAction={
               <IconButton
                 onClick={() => {
